@@ -2,6 +2,7 @@ package software.amazon.iotcoredeviceadvisor.suitedefinition
 
 import software.amazon.awssdk.services.iotdeviceadvisor.model.GetSuiteDefinitionRequest
 import software.amazon.awssdk.services.iotdeviceadvisor.model.GetSuiteDefinitionResponse
+import software.amazon.cloudformation.exceptions.ResourceNotFoundException
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy
 import software.amazon.cloudformation.proxy.Logger
 import software.amazon.cloudformation.proxy.ProgressEvent
@@ -19,6 +20,10 @@ class ReadHandler : BaseHandler<CallbackContext?>() {
         val deviceAdvisorClient = ClientBuilder.getDeviceAdvisorClient()
 
         val model = request.desiredResourceState
+        val suiteDefinitionId = model.suiteDefinitionId
+        if (suiteDefinitionId.isNullOrEmpty()) {
+            throw ResourceNotFoundException(ResourceModel.TYPE_NAME, null)
+        }
         val getSuiteDefinitionRequest = if (model.suiteDefinitionVersion.isNullOrBlank()) {
             GetSuiteDefinitionRequest.builder()
                 .suiteDefinitionId(model.suiteDefinitionId).build()

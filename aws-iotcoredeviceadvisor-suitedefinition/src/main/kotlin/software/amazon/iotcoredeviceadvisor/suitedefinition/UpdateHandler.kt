@@ -1,4 +1,4 @@
-package software.amazon.iotcoredeviceadvisor.suitedefinition
+package software.amazon.iotcoredeviceadvisor.suitedefinition;
 
 import software.amazon.awssdk.services.iotdeviceadvisor.model.TagResourceRequest
 import software.amazon.awssdk.services.iotdeviceadvisor.model.UntagResourceRequest
@@ -6,6 +6,7 @@ import software.amazon.awssdk.services.iotdeviceadvisor.IotDeviceAdvisorClient
 import software.amazon.awssdk.services.iotdeviceadvisor.model.GetSuiteDefinitionRequest
 import software.amazon.awssdk.services.iotdeviceadvisor.model.GetSuiteDefinitionResponse
 import software.amazon.awssdk.services.iotdeviceadvisor.model.UpdateSuiteDefinitionRequest
+import software.amazon.cloudformation.exceptions.ResourceNotFoundException
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy
 import software.amazon.cloudformation.proxy.Logger
 import software.amazon.cloudformation.proxy.ProgressEvent
@@ -29,7 +30,17 @@ class UpdateHandler : BaseHandler<CallbackContext?>() {
 
         val suiteDefinitionId = prevModel.suiteDefinitionId
         logger.log("Getting SuiteDefinition of id $suiteDefinitionId")
-        val suiteDefinition = getSuiteDefinition(proxy, deviceAdvisorClient, suiteDefinitionId)
+
+        if (suiteDefinitionId.isNullOrEmpty()) {
+            throw ResourceNotFoundException(ResourceModel.TYPE_NAME, null)
+        }
+
+        lateinit var suiteDefinition: GetSuiteDefinitionResponse
+        try {
+            suiteDefinition = getSuiteDefinition(proxy, deviceAdvisorClient, suiteDefinitionId)
+        } catch (e: Exception) {
+            handleDeviceAdvisorException(e)
+        }
         val suiteDefinitionArn = suiteDefinition.suiteDefinitionArn()
 
         val oldTags = getOldSuiteDefinitionTags(proxy, deviceAdvisorClient, suiteDefinitionId)

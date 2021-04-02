@@ -71,4 +71,3 @@ The Amazon Resource name for the suite definition.
 #### SuiteDefinitionVersion
 
 The suite definition version of a test suite.
-

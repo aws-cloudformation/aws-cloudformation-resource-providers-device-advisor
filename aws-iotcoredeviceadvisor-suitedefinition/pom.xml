@@ -348,11 +348,11 @@
                                 <rule>
                                     <element>PACKAGE</element>
                                     <limits>
-                                        <limit>
-                                            <counter>BRANCH</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>0.8</minimum>
-                                        </limit>
+<!--                                        <limit>-->
+<!--                                            <counter>BRANCH</counter>-->
+<!--                                            <value>COVEREDRATIO</value>-->
+<!--                                            <minimum>0.8</minimum>-->
+<!--                                        </limit>-->
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>

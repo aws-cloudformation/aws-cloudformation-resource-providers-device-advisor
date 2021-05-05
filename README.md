@@ -1,4 +1,4 @@
-## My Project
+## AWS::IoTCoreDeviceAdvisor::SuiteDefinition 
 
 TODO: Fill this README out!
 

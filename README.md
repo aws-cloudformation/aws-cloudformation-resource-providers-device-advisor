@@ -1,11 +1,6 @@
-## My Project
+## AWS IoT Core Device Advisor Cloudformation Resouce Handlers
 
-TODO: Fill this README out!
-
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
+For information about any one specific resource, check that resource's README.md file.
 
 ## Security
 

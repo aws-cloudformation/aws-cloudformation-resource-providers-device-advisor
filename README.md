@@ -1,6 +1,6 @@
-## AWS::IoTCoreDeviceAdvisor::SuiteDefinition 
+## AWS::IoTCoreDeviceAdvisor::SuiteDefinition
 
-TODO: Fill this README out!
+TODO: Fill this README out!!
 
 Be sure to:
 

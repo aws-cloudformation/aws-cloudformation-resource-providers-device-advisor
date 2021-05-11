@@ -81,7 +81,7 @@ _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormati
 
 The Name of the suite definition.
 
-_Required_: No
+_Required_: Yes 
 
 _Type_: String
 

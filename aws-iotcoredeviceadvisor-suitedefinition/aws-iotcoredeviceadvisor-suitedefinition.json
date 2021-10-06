@@ -102,8 +102,8 @@
     },
     "SuiteDefinitionId": {
       "type": "string",
-      "maxLength": 12,
-      "minLength": 36,
+      "maxLength": 36,
+      "minLength": 12,
       "description": "The unique identifier for the suite definition."
     },
     "SuiteDefinitionArn": {

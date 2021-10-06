@@ -26,7 +26,6 @@ import software.amazon.awssdk.services.iotdeviceadvisor.model.SuiteDefinitionInf
 @ExtendWith(MockKExtension::class)
 class ListHandlerTest {
     companion object {
-
         private val suiteDef1: SuiteDefinitionInformation = SuiteDefinitionInformation.builder()
                 .suiteDefinitionId("suiteId1")
                 .suiteDefinitionName("Test")
@@ -39,9 +38,7 @@ class ListHandlerTest {
                 .intendedForQualification(false)
                 .defaultDevices(listOf())
                 .build()
-
         val listSuiteDefinitionsResponse: ListSuiteDefinitionsResponse = ListSuiteDefinitionsResponse.builder().suiteDefinitionInformationList(listOf(suiteDef1, suiteDef2)).nextToken("token2").build()
-
     }
 
     @MockK(relaxed = true)
@@ -64,7 +61,6 @@ class ListHandlerTest {
 
     @Test
     fun handleRequest_SimpleSuccess() {
-
         val model1: ResourceModel = ResourceModel.builder()
                 .suiteDefinitionId("suiteId1")
                 .suiteDefinitionConfiguration(software.amazon.iotcoredeviceadvisor.suitedefinition.SuiteDefinitionConfiguration.builder()
@@ -100,7 +96,6 @@ class ListHandlerTest {
         Assertions.assertThat(response.nextToken).isEqualTo("token2")
         Assertions.assertThat(response.message).isNull()
         Assertions.assertThat(response.errorCode).isNull()
-
     }
 
     @Test

@@ -13,8 +13,6 @@ import software.amazon.awssdk.services.iotdeviceadvisor.model.ListSuiteDefinitio
 import software.amazon.cloudformation.proxy.OperationStatus
 import software.amazon.iotcoredeviceadvisor.suitedefinition.Converter.Companion.convertFromListSuiteDefinitionResponse
 
-
-
 class ListHandler : BaseHandler<CallbackContext?>() {
     override fun handleRequest(
             proxy: AmazonWebServicesClientProxy,
@@ -23,25 +21,19 @@ class ListHandler : BaseHandler<CallbackContext?>() {
             logger: Logger
     ): ProgressEvent<ResourceModel, CallbackContext?> {
         logger.log("List SuiteDefinitions Request: $request")
-
         val nextToken = request.nextToken
         val deviceAdvisorClient = getDeviceAdvisorClient()
-
         return try {
-
             val listSuiteDefinitionsRequest = ListSuiteDefinitionsRequest.builder().maxResults(50)
                     .nextToken(nextToken)
                     .build();
-
             val response: ListSuiteDefinitionsResponse = proxy.injectCredentialsAndInvokeV2(listSuiteDefinitionsRequest,
                     deviceAdvisorClient::listSuiteDefinitions)
-
             ProgressEvent.builder<ResourceModel, CallbackContext>()
                     .status(OperationStatus.SUCCESS)
                     .resourceModels(convertFromListSuiteDefinitionResponse(response))
                     .nextToken(response.nextToken())
                     .build()
-
         } catch (e: Exception) {
             ExceptionHandler.handleDeviceAdvisorException(e)
         }

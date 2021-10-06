@@ -5,6 +5,7 @@ package software.amazon.iotcoredeviceadvisor.suitedefinition
 
 import software.amazon.awssdk.services.iotdeviceadvisor.model.DeviceUnderTest
 import software.amazon.awssdk.services.iotdeviceadvisor.model.GetSuiteDefinitionResponse
+import software.amazon.awssdk.services.iotdeviceadvisor.model.ListSuiteDefinitionsResponse
 import software.amazon.awssdk.services.iotdeviceadvisor.model.SuiteDefinitionConfiguration
 import software.amazon.iotcoredeviceadvisor.suitedefinition.DeviceUnderTest as ModeledDeviceUnderTest
 import software.amazon.iotcoredeviceadvisor.suitedefinition.SuiteDefinitionConfiguration as ModeledSuiteDefinitionConfiguration
@@ -41,6 +42,18 @@ class Converter {
                     this.rootGroup = suiteDefinitionConfiguration.rootGroup()
                     this.devices = convertToModeledDevices(suiteDefinitionConfiguration.devices())
                 }}
+            }
+        }
+
+        fun convertFromListSuiteDefinitionResponse(listSuiteDefinitionResponse: ListSuiteDefinitionsResponse): List<ResourceModel> {
+            return listSuiteDefinitionResponse.suiteDefinitionInformationList().map {
+                suiteDefinitionInformation ->
+                ResourceModel().toBuilder().suiteDefinitionId(suiteDefinitionInformation.suiteDefinitionId()).suiteDefinitionConfiguration(ModeledSuiteDefinitionConfiguration.builder()
+                        .suiteDefinitionName(suiteDefinitionInformation.suiteDefinitionName())
+                        .rootGroup(null)
+                        .intendedForQualification(suiteDefinitionInformation.intendedForQualification())
+                        .devices(convertToModeledDevices(suiteDefinitionInformation.defaultDevices()))
+                        .devicePermissionRoleArn(null).build()).build()
             }
         }
 

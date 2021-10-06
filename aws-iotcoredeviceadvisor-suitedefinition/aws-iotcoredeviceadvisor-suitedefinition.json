@@ -102,7 +102,7 @@
     },
     "SuiteDefinitionId": {
       "type": "string",
-      "maxLength": 36,
+      "maxLength": 12,
       "minLength": 36,
       "description": "The unique identifier for the suite definition."
     },
@@ -163,6 +163,11 @@
     "delete": {
       "permissions": [
         "iotdeviceadvisor:DeleteSuiteDefinition"
+      ]
+    },
+    "list": {
+      "permissions": [
+        "iotdeviceadvisor:ListSuiteDefinitions"
       ]
     }
   }

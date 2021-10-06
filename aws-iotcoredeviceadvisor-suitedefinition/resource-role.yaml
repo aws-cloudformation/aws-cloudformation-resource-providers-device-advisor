@@ -27,6 +27,7 @@ Resources:
                 - "iotdeviceadvisor:CreateSuiteDefinition"
                 - "iotdeviceadvisor:DeleteSuiteDefinition"
                 - "iotdeviceadvisor:GetSuiteDefinition"
+                - "iotdeviceadvisor:ListSuiteDefinitions"
                 - "iotdeviceadvisor:TagResource"
                 - "iotdeviceadvisor:UntagResource"
                 - "iotdeviceadvisor:UpdateSuiteDefinition"

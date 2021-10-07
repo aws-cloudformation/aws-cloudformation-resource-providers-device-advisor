@@ -87,7 +87,6 @@ class ListHandlerTest {
 
         val response = handler.handleRequest(proxy, request, null, logger)
 
-        Assertions.assertThat(response).isNotNull
         Assertions.assertThat(response.status).isEqualTo(OperationStatus.SUCCESS)
         Assertions.assertThat(response.callbackContext).isNull()
         Assertions.assertThat(response.callbackDelaySeconds).isEqualTo(0)

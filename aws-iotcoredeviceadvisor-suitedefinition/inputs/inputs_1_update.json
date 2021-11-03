@@ -1,0 +1,11 @@
+{
+  "SuiteDefinitionConfiguration": {
+    "DevicePermissionRoleArn": "arn:aws:iam::507237901444:role/DeviceAdvisorDUTRole",
+    "IntendedForQualification": false,
+    "Devices": [{
+      "ThingArn": "arn:aws:iot:us-east-1:507237901444:thing/DeviceAdvisorVirtualDevice"
+    }],
+    "RootGroup": "{\"configuration\":{},\"tests\":[{\"id\":\"ccc41a73-4337-49c6-ab71-392cc078ab72\",\"name\":\"TestGroup\",\"configuration\":{\"EXECUTION_TIMEOUT\":\"100000\"},\"tests\":[{\"id\":\"e97e3142-cf08-4b0a-9b51-693207ff36e7\",\"name\":\"MQTTConnectTest\",\"configuration\":{},\"test\":{\"id\":\"MQTT_Connect\",\"testCase\":null,\"version\":\"0.0.0\"}}]}]}",
+    "SuiteDefinitionName": "contract-test-suite-definition"
+  }
+}
